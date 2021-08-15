@@ -20,7 +20,12 @@ def verifyIfPositionIsValid(positions, matrix)
     array = positions.split(',')
     x = array[0]
     y = array[1]
+    #verify if points(x and y) it's out
     if(array.length > 2 || (x.to_i)-1 > 2 || (y.to_i)-1 > 2)
+        return 0
+    end
+    #verifiy if poit it's free
+    if(matrix[(x.to_i)-1][(y.to_i)-1] != '#')
         return 0
     end
 
@@ -48,8 +53,8 @@ def verifyIfWin(marker, matrix)
         return marker
     elsif(matrix[0][2] == marker && matrix[1][1] == marker && matrix[2][0] == marker)
         return marker
-    
     end
+
     return false
 end
 
@@ -64,18 +69,18 @@ def setPositions(positions, matrix, player)
             return verifyIfWin('O', matrix)
         end
     else
-        print response.class
+        return -1
     end
     
 end
 
 def askForPosition(counter, matrix)
     if(counter % 2 == 0) #par
-        print "1 - Write your x,y positions. Like: '1,2': \n"
+        print "Player 2 - Write your x,y positions: \n"
         positions = gets.chomp
         return setPositions(positions, matrix, 2)
     else
-        print "2 - Write your x positions. Like: '1,2': \n"
+        print "Player 1 - Write your x,y positions: \n"
         positions = gets.chomp
         return setPositions(positions, matrix, 1)
     end
@@ -83,14 +88,18 @@ def askForPosition(counter, matrix)
 end
 
 def start(matrix)
-    puts "S T A R T\n"
-    rounds = 8
-    for i in 0..rounds do
+    rounds = 9
+    while rounds > 0
         writeMatrix(matrix)
-        response = askForPosition(i, matrix)
-        if(response != false)
+        response = askForPosition(rounds, matrix)
+        if(response == -1) #repeat round
+            rounds+1
+        elsif(response != false && response != -1) #somebody wins
             break
         end
+        #clear console
+        system "clear"
+        rounds-1
     end
 
     print "#########################################\n"
@@ -102,4 +111,46 @@ def start(matrix)
 
 end
 
+def welcome()
+    system "clear"
+    puts "Jogo da Velha em Ruby."
+    sleep(0.5)
+    system "clear"
+
+    puts "Jogo da Velha em Ruby.."
+    sleep(0.5)
+    system "clear"
+
+    puts "Jogo da Velha em Ruby..."
+    sleep(0.5)
+    system "clear"
+    
+    puts "The positions need be writed like: 1,1 or 2,3 \n"
+    puts "The max and min position, to x and y respectively, is 3 and 1 \n"
+    sleep(5.0)
+    system "clear"
+
+    puts "S\n"
+    sleep(0.5)
+    system "clear"
+
+    puts "S T\n"
+    sleep(0.5)
+    system "clear"
+
+    puts "S T A\n"
+    sleep(0.5)
+    system "clear"
+
+    puts "S T A R\n"
+    sleep(0.5)
+    system "clear"
+
+    puts "S T A R T\n"
+    sleep(0.5)
+    system "clear"
+end
+
+#G A M E
+welcome()
 start(matrix)
