@@ -1,19 +1,19 @@
 class Player
 
     @name = ''
-    @wins = 0
+    @victories = 0
     
     def setName(name)
         @name = name
     end
 
     def addWins()
-        @wins = @wins.to_i + 1
-        puts "Total: #{@wins}"
+        @victories = @victories.to_i + 1
+        puts "Total: #{@victories}"
     end
 
     def getWins()
-        puts "Total: #{@wins}"
+        puts "Total: #{@victories}"
     end
 
     def getName()

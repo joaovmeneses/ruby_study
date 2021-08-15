@@ -40,23 +40,23 @@ end
 def verifyIfWin(marker)
     #ROWS
     if($matrix[0][0] == marker && $matrix[0][1] == marker && $matrix[0][2] == marker)
-        return marker
+        return true
     elsif($matrix[1][0] == marker && $matrix[1][1] == marker && $matrix[1][2] == marker)
-        return marker
+        return true
     elsif($matrix[2][0] == marker && $matrix[2][1] == marker && $matrix[2][2] == marker)
-        return marker
+        return true
     #COLUMNS
     elsif($matrix[0][0] == marker && $matrix[1][0] == marker && $matrix[2][0] == marker)
-        return marker
+        return true
     elsif($matrix[1][1] == marker && $matrix[1][1] == marker && $matrix[2][1] == marker)
-        return marker
+        return true
     elsif($matrix[0][2] == marker && $matrix[1][2] == marker && $matrix[2][2] == marker)
-        return marker
+        return true
     #DIAGONALS
     elsif($matrix[0][0] == marker && $matrix[1][1] == marker && $matrix[2][2] == marker)
-        return marker
+        return true
     elsif($matrix[0][2] == marker && $matrix[1][1] == marker && $matrix[2][0] == marker)
-        return marker
+        return true
     end
 
     return false
@@ -91,19 +91,33 @@ def askForPosition(counter)
 
 end
 
+def winnerMsg(player)
+    system "clear"
+    print("Congratulations #{player.getName} !")
+
+    player.addVictories
+end
+
 def start()
     rounds = 9
     while rounds > 0
         writeMatrix()
         response = askForPosition(rounds)
         if(response == -1) #repeat round
-            rounds+1
+            rounds = rounds+1
         elsif(response != false && response != -1) #somebody wins
             break
+        elsif(response == true)
+            if(rounds % 2 == 0)
+                winnerMsg(player_2)
+            else
+                winnerMsg(player_1)
+            end
+            rounds = 0
         end
         #clear console
         system "clear"
-        rounds-1
+        rounds = rounds -1
     end
 
     print "#########################################\n"
