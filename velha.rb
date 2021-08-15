@@ -28,10 +28,14 @@ def verifyIfPositionIsValid(positions, matrix)
 
 end
 
-def setPositions(positions, matrix)
+def setPositions(positions, matrix, player)
     response = verifyIfPositionIsValid(positions, matrix)
     if(response.class == Array)
-        matrix[(response[0].to_i)-1][(response[1].to_i)-1] = 'X'
+        if(player == 1)
+            matrix[(response[0].to_i)-1][(response[1].to_i)-1] = 'X'
+        else
+            matrix[(response[0].to_i)-1][(response[1].to_i)-1] = 'O'
+        end
     else
         print response.class
     end
@@ -41,11 +45,11 @@ def askForPosition(counter, matrix)
     if(counter % 2 == 0) #par
         print "1 - Write your x,y positions. Like: '1,2': \n"
         positions = gets.chomp
-        setPositions(positions, matrix)
+        setPositions(positions, matrix, 2)
     else
         print "2 - Write your x positions. Like: '1,2': \n"
         positions = gets.chomp
-        setPositions(positions, matrix)
+        setPositions(positions, matrix, 1)
     end
 
 end
