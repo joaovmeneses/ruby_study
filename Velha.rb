@@ -179,9 +179,12 @@ class Velha
         print("Put your name, player 2:\n")
         $player_2.setName(gets.chomp)
     end
+    
+    def run()
+        velha = Velha.new
+        velha.cadastre()
+        velha.welcome()
+        velha.start()
+    end
+
 end
-#G A M E
-velha = Velha.new
-velha.cadastre()
-velha.welcome()
-velha.start()
