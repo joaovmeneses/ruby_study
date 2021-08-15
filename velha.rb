@@ -29,8 +29,26 @@ def verifyIfPositionIsValid(positions, matrix)
 end
 
 def verifyIfWin(marker, matrix)
+    #ROWS
     if(matrix[0][0] == marker && matrix[0][1] == marker && matrix[0][2] == marker)
         return marker
+    elsif(matrix[1][0] == marker && matrix[1][1] == marker && matrix[1][2] == marker)
+        return marker
+    elsif(matrix[2][0] == marker && matrix[2][1] == marker && matrix[2][2] == marker)
+        return marker
+    #COLUMNS
+    elsif(matrix[0][0] == marker && matrix[1][0] == marker && matrix[2][0] == marker)
+        return marker
+    elsif(matrix[1][1] == marker && matrix[1][1] == marker && matrix[2][1] == marker)
+        return marker
+    elsif(matrix[0][2] == marker && matrix[1][2] == marker && matrix[2][2] == marker)
+        return marker
+    #DIAGONALS
+    elsif(matrix[0][0] == marker && matrix[1][1] == marker && matrix[2][2] == marker)
+        return marker
+    elsif(matrix[0][2] == marker && matrix[1][1] == marker && matrix[2][0] == marker)
+        return marker
+    
     end
     return false
 end
