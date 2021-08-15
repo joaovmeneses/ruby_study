@@ -14,7 +14,7 @@ matrix = [[0,0,0],[0,0,0],[0,0,0]]
 def writeMatrix(matrix)
     text = ''
     for i in 0..matrix.length-1 do
-        print matrix[i][0..2]
+        print matrix[i][0..2].to_s.gsub('[','').gsub(']','').gsub(',','')
         print "\n"
     end
 end
